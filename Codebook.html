@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Codebook for UCI HAR Dataset</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Codebook for UCI HAR Dataset</h1>
+
+<h3>This codebook is for the variables found in tidydata.txt created by run_analysis.R</h3>
+
+<h3>This was preparred with the aid of README.txt and features_info.txt, which are files found in the folder &ldquo;UCI HAR Dataset&rdquo;, which appears in your working directory after running run_analysis.R.</h3>
+
+<h3>Here is a link to the data set home page: <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">Human Activity Recognition Using Smartphones Data Set</a></h3>
+
+<p>SubjectID is a number between 1 and 30, each representing one of the thirty participants in the study.  </p>
+
+<p>ActivityID is one of the six different activites that were used to generate data:</p>
+
+<ul>
+<li>laying</li>
+<li>sitting</li>
+<li>standing</li>
+<li>walking</li>
+<li>walkingdownstairs (walking down stairs)</li>
+<li>walkingupstairs (walking up stairs)</li>
+</ul>
+
+<p>The remaining 66 columns have descriptive variable names that follow the following naming conventions:</p>
+
+<ul>
+<li>a prefix &ldquo;t&rdquo; represents &ldquo;time&rdquo;</li>
+<li>a prefix &ldquo;f&rdquo; represents &ldquo;frequency domain signal&rdquo;</li>
+<li>a substring &ldquo;BodyAcc&rdquo; represents (estimated) body acceleration</li>
+<li>a substring &ldquo;GravityAcc&rdquo; represents (total) gravity acceleration</li>
+<li>a substring &ldquo;Gyro&rdquo; represents angular velocity measured by the gyroscope</li>
+<li>a substring &ldquo;Mag&rdquo; represents magnitude</li>
+<li>a substring &ldquo;Jerk&rdquo; represents the acceleration of the acceleration</li>
+<li>a substring &ldquo;Mean&rdquo; represents that it is a mean</li>
+<li>a substring &ldquo;StdDev&rdquo; represents that it is a standard deviation</li>
+<li>a suffix &ldquo;X&rdquo;, &ldquo;Y&rdquo;, or &ldquo;Z&rdquo; represents motion in those respective directions<br/></li>
+</ul>
+
+<p>The original values of these variables were normalized and bounded within [-1,1].  After running run_analysis.R, the values that appear in tidydata.txt are: the mean of that variable given each combination of Subject and Activity.  Note that the resulting values will still be within the interval [-1,1].  There are 30 subjects and 6 activiies, leading to 180 combinations of subject and activity.  For each of those 180 combinations, all values of a given variable associated with the given combination where averaged.  </p>
+
+<p>For example, row 3 represents Subject 3 doing the activity Laying.  Column 3 is &ldquo;tBodyAccMeanX&rdquo;.  Then, the value in row 3, column 3 is then the mean of all the values of Subject 3&#39;s average body acceleration in the X direction while laying down.</p>
+
+<table><thead>
+<tr>
+<th>Column Number</th>
+<th align="left">Variable Name</th>
+<th align="left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td align="left">SubjectID</td>
+<td align="left">Subject ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="left">ActivityID</td>
+<td align="left">Activity ID</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="left">tBodyAccMeanX</td>
+<td align="left">Average body acceleration in X direction</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="left">tBodyAccMeanY</td>
+<td align="left">Average body acceleration in Y direction</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="left">tBodyAccMeanZ</td>
+<td align="left">Average body acceleration in Z direction</td>
+</tr>
+<tr>
+<td>6</td>
+<td align="left">tBodyAccStdDevX</td>
+<td align="left">Standard deviation of body acceleration in X direction</td>
+</tr>
+<tr>
+<td>7</td>
+<td align="left">tBodyAccStdDevY</td>
+<td align="left">Standard deviation of body acceleration in Y direction</td>
+</tr>
+<tr>
+<td>8</td>
+<td align="left">tBodyAccStdDevZ</td>
+<td align="left">Standard deviation of body acceleration in Z direction</td>
+</tr>
+<tr>
+<td>9</td>
+<td align="left">tGravityAccMeanX</td>
+<td align="left">Average gravity acceleration in X direction</td>
+</tr>
+<tr>
+<td>10</td>
+<td align="left">tGravityAccMeanY</td>
+<td align="left">Average gravity acceleration in Y direction</td>
+</tr>
+<tr>
+<td>11</td>
+<td align="left">tGravityAccMeanZ</td>
+<td align="left">Average gravity acceleration in Z direction</td>
+</tr>
+<tr>
+<td>12</td>
+<td align="left">tGravityAccStdDevX</td>
+<td align="left">Standard deviation of gravity acceleration in X direction</td>
+</tr>
+<tr>
+<td>13</td>
+<td align="left">tGravityAccStdDevY</td>
+<td align="left">Standard deviation of gravity acceleration in Y direction</td>
+</tr>
+<tr>
+<td>14</td>
+<td align="left">tGravityAccStdDevZ</td>
+<td align="left">Standard deviation of gravity acceleration in Z direction</td>
+</tr>
+<tr>
+<td>15</td>
+<td align="left">tBodyAccJerkMeanX</td>
+<td align="left">Average body jerk in X direction</td>
+</tr>
+<tr>
+<td>16</td>
+<td align="left">tBodyAccJerkMeanY</td>
+<td align="left">Average body jerk in Y direction</td>
+</tr>
+<tr>
+<td>17</td>
+<td align="left">tBodyAccJerkMeanZ</td>
+<td align="left">Average body jerk in Z direction</td>
+</tr>
+<tr>
+<td>18</td>
+<td align="left">tBodyAccJerkStdDevX</td>
+<td align="left">Standard deviation of body jerk in X direction</td>
+</tr>
+<tr>
+<td>19</td>
+<td align="left">tBodyAccJerkStdDevY</td>
+<td align="left">Standard deviation of body jerk in Y direction</td>
+</tr>
+<tr>
+<td>20</td>
+<td align="left">tBodyAccJerkStdDevZ</td>
+<td align="left">Standard deviation of body jerk in Z direction</td>
+</tr>
+<tr>
+<td>21</td>
+<td align="left">tBodyGyroMeanX</td>
+<td align="left">Average body rotation in X direction</td>
+</tr>
+<tr>
+<td>22</td>
+<td align="left">tBodyGyroMeanY</td>
+<td align="left">Average body rotation in Y direction</td>
+</tr>
+<tr>
+<td>23</td>
+<td align="left">tBodyGyroMeanZ</td>
+<td align="left">Average body rotation in Z direction</td>
+</tr>
+<tr>
+<td>24</td>
+<td align="left">tBodyGyroStdDevX</td>
+<td align="left">Standard deviation of body rotation in X direction</td>
+</tr>
+<tr>
+<td>25</td>
+<td align="left">tBodyGyroStdDevY</td>
+<td align="left">Standard deviation of body rotation in Y direction</td>
+</tr>
+<tr>
+<td>26</td>
+<td align="left">tBodyGyroStdDevZ</td>
+<td align="left">Standard deviation of body rotation in Z direction</td>
+</tr>
+<tr>
+<td>27</td>
+<td align="left">tBodyGyroJerkMeanX</td>
+<td align="left">Average body rotation jerk in X direction</td>
+</tr>
+<tr>
+<td>28</td>
+<td align="left">tBodyGyroJerkMeanY</td>
+<td align="left">Average body rotation jerk in Y direction</td>
+</tr>
+<tr>
+<td>29</td>
+<td align="left">tBodyGyroJerkMeanZ</td>
+<td align="left">Average body rotation jerk in Z direction</td>
+</tr>
+<tr>
+<td>30</td>
+<td align="left">tBodyGyroJerkStdDevX</td>
+<td align="left">Standard deviation of body rotation jerk in X direction</td>
+</tr>
+<tr>
+<td>31</td>
+<td align="left">tBodyGyroJerkStdDevY</td>
+<td align="left">Standard deviation of body rotation jerk in Y direction</td>
+</tr>
+<tr>
+<td>32</td>
+<td align="left">tBodyGyroJerkStdDevZ</td>
+<td align="left">Standard deviation of body rotation jerk in Z direction</td>
+</tr>
+<tr>
+<td>33</td>
+<td align="left">tBodyAccMagMean</td>
+<td align="left">Average magnitude of body acceleration</td>
+</tr>
+<tr>
+<td>34</td>
+<td align="left">tBodyAccMagStdDev</td>
+<td align="left">Standard deviation of magnitude of body acceleration</td>
+</tr>
+<tr>
+<td>35</td>
+<td align="left">tGravityAccMagMean</td>
+<td align="left">Average magnitude of gravity acceleration</td>
+</tr>
+<tr>
+<td>36</td>
+<td align="left">tGravityAccMagStdDev</td>
+<td align="left">Standard deviation of magnitude of gravity acceleration</td>
+</tr>
+<tr>
+<td>37</td>
+<td align="left">tBodyAccJerkMagMean</td>
+<td align="left">Average magnitude of body jerk</td>
+</tr>
+<tr>
+<td>38</td>
+<td align="left">tBodyAccJerkMagStdDev</td>
+<td align="left">Standard deviatiion of magnitude of body jerk</td>
+</tr>
+<tr>
+<td>39</td>
+<td align="left">tBodyGyroMagMean</td>
+<td align="left">Average magnitude of body rotation</td>
+</tr>
+<tr>
+<td>40</td>
+<td align="left">tBodyGyroMagStdDev</td>
+<td align="left">Standard deviation of magnitude of body rotation</td>
+</tr>
+<tr>
+<td>41</td>
+<td align="left">tBodyGyroJerkMagMean</td>
+<td align="left">Average magnitude of body rotation jerk</td>
+</tr>
+<tr>
+<td>42</td>
+<td align="left">tBodyGyroJerkMagStdDev</td>
+<td align="left">Standard deviation of magnitude of body rotation jerk</td>
+</tr>
+<tr>
+<td>43</td>
+<td align="left">fBodyAccMeanX</td>
+<td align="left">Average body acceleration in X direction</td>
+</tr>
+<tr>
+<td>44</td>
+<td align="left">fBodyAccMeanY</td>
+<td align="left">Average body acceleration in Y direction</td>
+</tr>
+<tr>
+<td>45</td>
+<td align="left">fBodyAccMeanZ</td>
+<td align="left">Average body acceleration in Z direction</td>
+</tr>
+<tr>
+<td>46</td>
+<td align="left">fBodyAccStdDevX</td>
+<td align="left">Standard deviation of body acceleration in X direction</td>
+</tr>
+<tr>
+<td>47</td>
+<td align="left">fBodyAccStdDevY</td>
+<td align="left">Standard deviation of body acceleration in Y direction</td>
+</tr>
+<tr>
+<td>48</td>
+<td align="left">fBodyAccStdDevZ</td>
+<td align="left">Standard deviation of body acceleration in Z direction</td>
+</tr>
+<tr>
+<td>49</td>
+<td align="left">fBodyAccJerkMeanX</td>
+<td align="left">Average body jerk in X direction</td>
+</tr>
+<tr>
+<td>50</td>
+<td align="left">fBodyAccJerkMeanY</td>
+<td align="left">Average body jerk in Y direction</td>
+</tr>
+<tr>
+<td>51</td>
+<td align="left">fBodyAccJerkMeanZ</td>
+<td align="left">Average body jerk in Z direction</td>
+</tr>
+<tr>
+<td>52</td>
+<td align="left">fBodyAccJerkStdDevX</td>
+<td align="left">Standard deviation of body jerk in X direction</td>
+</tr>
+<tr>
+<td>53</td>
+<td align="left">fBodyAccJerkStdDevY</td>
+<td align="left">Standard deviation of body jerk in Y direction</td>
+</tr>
+<tr>
+<td>54</td>
+<td align="left">fBodyAccJerkStdDevZ</td>
+<td align="left">Standard deviation of body jerk in Z direction</td>
+</tr>
+<tr>
+<td>55</td>
+<td align="left">fBodyGyroMeanX</td>
+<td align="left">Average body rotation in X direction</td>
+</tr>
+<tr>
+<td>56</td>
+<td align="left">fBodyGyroMeanY</td>
+<td align="left">Average body rotation in Y direction</td>
+</tr>
+<tr>
+<td>57</td>
+<td align="left">fBodyGyroMeanZ</td>
+<td align="left">Average body rotation in Z direction</td>
+</tr>
+<tr>
+<td>58</td>
+<td align="left">fBodyGyroStdDevX</td>
+<td align="left">Standard deviation of body rotation in X direction</td>
+</tr>
+<tr>
+<td>59</td>
+<td align="left">fBodyGyroStdDevY</td>
+<td align="left">Standard deviation of body rotation in Y direction</td>
+</tr>
+<tr>
+<td>60</td>
+<td align="left">fBodyGyroStdDevZ</td>
+<td align="left">Standard deviation of body rotation in Z direction</td>
+</tr>
+<tr>
+<td>61</td>
+<td align="left">fBodyAccMagMean</td>
+<td align="left">Average body rotation magnitude</td>
+</tr>
+<tr>
+<td>62</td>
+<td align="left">fBodyAccMagStdDev</td>
+<td align="left">Standard deviation of body rotation magnitude</td>
+</tr>
+<tr>
+<td>63</td>
+<td align="left">fBodyBodyAccJerkMagMean</td>
+<td align="left">Average magnitude of body jerk</td>
+</tr>
+<tr>
+<td>64</td>
+<td align="left">fBodyBodyAccJerkMagStdDev</td>
+<td align="left">Standard deviation of magnitude of body jerk</td>
+</tr>
+<tr>
+<td>65</td>
+<td align="left">fBodyBodyGyroMagMean</td>
+<td align="left">Average magnitude of body rotation</td>
+</tr>
+<tr>
+<td>66</td>
+<td align="left">fBodyBodyGyroMagStdDev</td>
+<td align="left">Standard deviation of magnitude of body rotation</td>
+</tr>
+<tr>
+<td>67</td>
+<td align="left">fBodyBodyGyroJerkMagMean</td>
+<td align="left">Average magnitude of body rotation jerk</td>
+</tr>
+<tr>
+<td>68</td>
+<td align="left">fBodyBodyGyroJerkMagStdDev</td>
+<td align="left">Standard deviation of body rotation jerk</td>
+</tr>
+</tbody></table>
+
+</body>
+
+</html>
+

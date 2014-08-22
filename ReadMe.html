@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Welcome to the my solution for assignment 2 of reproducible research, july 2014.</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Welcome to the my solution for assignment 2 of reproducible research, july 2014.</h1>
+
+<h4>Here is a link to the data set home page: <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">Human Activity Recognition Using Smartphones Data Set</a></h4>
+
+<h2>Grading this assignment</h2>
+
+<p>If for some reason my tidy data set does not appear on the Coursera webpage of Reproducible Research, please find it in the GitHub repository: <a href="https://github.com/ibanmd/RepResearchAssgn2">https://github.com/ibanmd/RepResearchAssgn2</a>  It is called &ldquo;tidydata.txt&rdquo;<br/>
+I have written most of this assignment in an informal tone, because I know that my audience also worked on the same material and is familiar with it.</p>
+
+<h3>Making my script work on your Windows computer</h3>
+
+<p><strong><em>Note</em></strong> In order to make this script work on a Windows computer (it was made to work on a Mac), <strong><em>replace</em></strong> lines 6, 7 and 8 of my script with these 3 lines:</p>
+
+<p>dataURL &lt;- &ldquo;<a href="http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a>&rdquo;<br/>
+destFile &lt;- paste(workingDir,&ldquo;/RepResearchAssignment2.zip&rdquo;, sep=&ldquo;&rdquo;)<br/>
+download.file(url=dataURL, destfile=destFile)    </p>
+
+<p>Basically, in order to work on a Windows computer, the &ldquo;https&rdquo; is changed to &ldquo;http&rdquo; and the method=&ldquo;curl&rdquo; is removed.</p>
+
+<h2>What the script does</h2>
+
+<p>The script reads in the various data sets found in the folder &ldquo;UCI HAR Dataset&rdquo;, pieces them together into one big data frame, and then finds the mean for each column and for each unique combination of Subject ID and Activity ID. After it does this, it creates a text file called &ldquo;tidydata.txt&rdquo; inside that same folder.</p>
+
+<h2>How the script works</h2>
+
+<p>All that is required for the script to work is to simply run it! <strong><em>See note below</em></strong>  Here is a quick summary of what the my version of run_analysis.R does:  </p>
+
+<ol>
+<li>Downloads the .zip file from Coursera into your working directory.  I am not certain that this will work on any computer, but it should work on any Mac.</li>
+<li>Unzips the file, creating the &ldquo;UCI HAR Dataset&rdquo;&ldquo; folder.</li>
+<li>Loads all the various data sets into R and combines them into 1 data frame, of dimension 563x10299</li>
+<li>Adds in the column names to the data frame</li>
+<li>Uses grep() to subset the data frame to include columns with &quot;mean()&rdquo; or &ldquo;std()&rdquo;</li>
+<li>Uses gsub() to clean up the column names</li>
+<li>Replaces the numbers 1 through 6 in the Activity ID column with their corresponding names</li>
+<li>Uses aggregate() to take the mean of each column by each combination of Subject and Activity</li>
+<li>Creates a text file of the resulting 180x68 data frame and puts it into the &ldquo;UCI HAR Dataset&rdquo; folder</li>
+</ol>
+
+</body>
+
+</html>
+
